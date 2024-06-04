@@ -11,11 +11,13 @@ class PruebasAplicacionSaludo(unittest.TestCase):
         respuesta = self.app.get('/')
         self.assertEqual(respuesta.status_code, 200)
         self.assertIn("¡Bienvenido a la Aplicación 'Saludo' de Salvador Flores!", respuesta.data.decode('utf-8'))
+        print("El test de / path inicial ha salido con EXITO!!")
 
     def test_pagina_saludo_get(self):
         response = self.app.get('/saludo')
         self.assertEqual(response.status_code, 200)
         self.assertIn('<title>saludo</title>', response.data.decode('utf-8'))
+        print("El test de path /saludo ha salido con EXITO!!")
 
     def test_pagina_saludo_post(self):
         usuario = 'Usuario'
@@ -23,6 +25,7 @@ class PruebasAplicacionSaludo(unittest.TestCase):
         respuesta = self.app.post('/saludo', data=dict(usuario=usuario, fecha_nacimiento=fecha_nacimiento))
         self.assertEqual(respuesta.status_code, 200)
         self.assertIn(f'¡Hola, {usuario}! Le damos la bienvenida a nuestro servicio exclusivo.<br>Su fecha de nacimiento es {fecha_nacimiento}.', respuesta.data.decode('utf-8'))
+        print("El test de ususario y fecha ha salido con EXITO!!")
 
 if __name__ == '__main__':
     unittest.main()
